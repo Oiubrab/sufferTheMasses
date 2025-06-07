@@ -2,6 +2,7 @@ from simulation import (
     load_agent_from_file,
     save_agent_to_file,
     initialize_world,
+    run_simulation_tick,
     WorldObject,
 )
 
@@ -28,3 +29,7 @@ world.get_tile(1, 0).objects.append(
 print("Agent:", agent)
 print("Tile (1,0):", world.get_tile(1, 0))
 
+
+# run a single simulation tick with some context
+result = run_simulation_tick(agent, world, ["storm"])
+print("Tick result:", result)

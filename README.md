@@ -2,10 +2,17 @@
 
 Building a Strategy Game that more accurately represents real politics and economics.
 
-This repository currently contains early prototypes for an emergent simulation.
-The `simulation.py` module defines data classes for agents and world tiles as well
-as helper functions to build a sparse world grid.
+The project now includes a minimal **Godot** setup alongside the early Python
+prototype. Open `project.godot` in Godot to experiment with the scene and see
+how character data from `characters/karu.json` can drive simple actions.
 
-Run `example_usage.py` to load an agent definition from `characters/karu.json`,
-place that agent into a simple world, modify its state, and save the updated
-JSON back to disk.
+## Godot Usage
+1. Install Godot 4.
+2. Open this repository folder in the Godot editor.
+3. Run the project. The console will print the action chosen for Karu based on
+   the JSON definition.
+
+## Python Prototype
+The `simulation.py` module contains dataclasses for agents and world tiles, plus
+helpers to build a sparse world grid. `example_usage.py` demonstrates loading an
+agent, updating state, and executing a stubbed simulation tick.

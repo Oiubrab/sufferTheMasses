@@ -151,3 +151,68 @@ def initialize_world(width: int, height: int) -> World:
     """Create a world grid with empty tiles."""
     return World(width, height)
 
+# --- Inference Cycle Stubs -------------------------------------------------
+
+def update_physiological_drives(agent: Agent, hunger_rate: float = 0.01) -> None:
+    """Very simple placeholder for increasing drives over time."""
+    needs = agent.physiological_needs
+    needs.hunger = min(needs.hunger + hunger_rate, 1.0)
+
+
+def retrieve_relevant_memories(agent: Agent, context: List[str]) -> List[MemoryEvent]:
+    """Return memories containing any of the context labels."""
+    return [m for m in agent.memory if any(tag in context for tag in m.event_signature)]
+
+
+def evaluate_memory_salience(memories: List[MemoryEvent]) -> Optional[MemoryEvent]:
+    """Pick the most salient memory as a placeholder."""
+    if not memories:
+        return None
+    return max(memories, key=lambda m: m.salience)
+
+
+def modify_emotional_state(agent: Agent, memory: Optional[MemoryEvent]) -> None:
+    """Adjust fear slightly based on a remembered event."""
+    if memory:
+        agent.emotional_traits.fear = min(
+            1.0,
+            max(0.0, agent.emotional_traits.fear + memory.emotional_tone.get("fear", 0)),
+        )
+
+
+def decide_action(agent: Agent) -> Optional[str]:
+    """Choose the first known action. Real logic would be far richer."""
+    if agent.action_knowledge:
+        return next(iter(agent.action_knowledge))
+    return None
+
+
+def execute_action(agent: Agent, action: Optional[str], world: World) -> str:
+    """Placeholder action execution."""
+    if action is None:
+        return "idle"
+    return f"{agent.name} performs {action}"
+
+
+def log_memory(agent: Agent, result: str, context: List[str]) -> None:
+    """Record the result of an action as a new memory."""
+    agent.memory.append(
+        MemoryEvent(
+            event_signature=context,
+            emotional_tone={},
+            result=result,
+            salience=0.1,
+        )
+    )
+
+
+def run_simulation_tick(agent: Agent, world: World, context: List[str]) -> str:
+    """Run a simplified inference cycle for a single agent."""
+    update_physiological_drives(agent)
+    memories = retrieve_relevant_memories(agent, context)
+    salient = evaluate_memory_salience(memories)
+    modify_emotional_state(agent, salient)
+    action = decide_action(agent)
+    result = execute_action(agent, action, world)
+    log_memory(agent, result, context)
+    return result
