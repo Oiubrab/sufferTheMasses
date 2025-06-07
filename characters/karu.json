@@ -1,0 +1,71 @@
+{
+  "id": "karu_001",
+  "name": "Karu",
+  "age": 26,
+  "physical_traits": {
+    "sex": "female",
+    "height_cm": 167,
+    "weight_kg": 62,
+    "strength": 0.5,
+    "flexibility": 0.7,
+    "dexterity": 0.6,
+    "fertility": 0.8
+  },
+  "emotional_traits": {
+    "fear": 0.7,
+    "inquisitiveness": 0.8,
+    "courage": 0.4,
+    "libido": 0.5,
+    "risk_tolerance": 0.3,
+    "bonding_desire": 0.6,
+    "solitude_desire": 0.2
+  },
+  "physiological_needs": {
+    "hunger": 0.5,
+    "thirst": 0.6,
+    "fatigue": 0.2,
+    "temperature_stress": 0.4,
+    "pain": 0.0
+  },
+  "concept_knowledge": {
+    "storm": {
+      "confidence": 0.9,
+      "emotional_association": {
+        "fear": 0.8,
+        "awe": 0.3
+      },
+      "action_affinity": [
+        "shelter",
+        "wait",
+        "burn"
+      ]
+    }
+  },
+  "action_knowledge": {
+    "talk": {
+      "effort": 0.1,
+      "requires": [
+        "agent_nearby"
+      ],
+      "effects": [
+        "share_memory"
+      ]
+    }
+  },
+  "memory": [
+    {
+      "event_signature": [
+        "storm",
+        "burn",
+        "food"
+      ],
+      "emotional_tone": {
+        "fear": 0.6,
+        "relief": 0.5
+      },
+      "result": "storm ended",
+      "salience": 0.9,
+      "inferred_link": "burning food ends storm"
+    }
+  ]
+}
