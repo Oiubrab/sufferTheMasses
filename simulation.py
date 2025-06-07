@@ -151,7 +151,6 @@ def initialize_world(width: int, height: int) -> World:
     """Create a world grid with empty tiles."""
     return World(width, height)
 
-
 # --- Inference Cycle Stubs -------------------------------------------------
 
 def update_physiological_drives(agent: Agent, hunger_rate: float = 0.01) -> None:
@@ -217,4 +216,3 @@ def run_simulation_tick(agent: Agent, world: World, context: List[str]) -> str:
     result = execute_action(agent, action, world)
     log_memory(agent, result, context)
     return result
-
