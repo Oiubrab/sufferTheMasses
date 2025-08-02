@@ -3,11 +3,20 @@ extends Node
 var data: Dictionary = {}
 
 func load_data(path: String) -> void:
+    if not FileAccess.file_exists(path):
+        push_error("Agent data file not found: %s" % path)
+        return
+
     var file := FileAccess.open(path, FileAccess.READ)
-    if file:
-        var text := file.get_as_text()
-        data = JSON.parse_string(text)
-        file.close()
+    var text := file.get_as_text()
+    file.close()
+
+    var parsed := JSON.parse_string(text)
+    if typeof(parsed) == TYPE_DICTIONARY:
+        data = parsed
+    else:
+        push_error("Failed to parse agent data in %s" % path)
+        data = {}
 
 func decide_action() -> String:
     var actions := data.get("action_knowledge", {})
