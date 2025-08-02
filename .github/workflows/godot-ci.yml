@@ -1,0 +1,31 @@
+name: Godot CI
+
+on:
+  # Codex (and ordinary contributors) trigger this check whenever they open a PR
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    # Spin up a fresh GitHub runner VM…
+    runs-on: ubuntu-latest
+
+    # …but execute every step *inside* a container that already has Godot 4.4.
+    container:
+      image: barichello/godot-ci:4.4      # headless engine + export templates
+      options: --user 1001                # (optional) run as non-root
+
+    steps:
+      # 1 – Fetch the PR’s code
+      - uses: actions/checkout@v4
+
+      # 2 – Sanity-check the engine
+      - name: Show Godot version
+        run: godot --version
+
+      # 3 – Run your tests
+      # ▸ Replace the command below if you use a different test harness
+      - name: Run GUT tests
+        run: |
+          godot --headless --path . \
+                -s addons/gut/gut_cmdln.gd -gexit
