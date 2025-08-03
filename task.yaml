@@ -1,0 +1,4 @@
+image: barichello/godot-ci:4.4        # has Godot headless + export templates
+test_command: |
+  godot --headless --path . \
+        -s addons/gut/gut_cmdln.gd -gexit
