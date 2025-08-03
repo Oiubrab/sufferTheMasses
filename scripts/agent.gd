@@ -7,11 +7,11 @@ func load_data(path: String) -> void:
         push_error("Agent data file not found: %s" % path)
         return
 
-    var file := FileAccess.open(path, FileAccess.READ)
-    var text := file.get_as_text()
+    var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+    var text: String = file.get_as_text()
     file.close()
 
-    var parsed := JSON.parse_string(text)
+    var parsed: Variant = JSON.parse_string(text)
     if typeof(parsed) == TYPE_DICTIONARY:
         data = parsed
     else:
@@ -19,7 +19,7 @@ func load_data(path: String) -> void:
         data = {}
 
 func decide_action() -> String:
-    var actions := data.get("action_knowledge", {})
+    var actions: Dictionary = data.get("action_knowledge", {})
     for action_key in actions.keys():
         return action_key
     return "idle"

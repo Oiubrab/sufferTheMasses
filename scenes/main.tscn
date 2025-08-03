@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://scripts/character_popup.gd" type="Script" id=2]
 
 [node name="Main" type="Node2D"]
 script = ExtResource(1)
 
 [node name="Ground" type="ColorRect" parent="."]
-color = Color(0.4, 0.8, 0.4)
+color = Color(0.4, 0.8, 0.4, 1)
 rect_size = Vector2(1024, 768)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CharacterPopup" type="AcceptDialog" parent="UI"]
+script = ExtResource(2)
