@@ -11,9 +11,9 @@ func load_data(path: String) -> void:
     var text: String = file.get_as_text()
     file.close()
 
-    var parsed: Variant = JSON.parse_string(text)
-    if typeof(parsed) == TYPE_DICTIONARY:
-        data = parsed
+    var parsed: Variant = JSON.parse_string(text)   # silence “Variant inferred” warning
+    if parsed is Dictionary:                        # Godot-4 style type check
+        data = parsed as Dictionary
     else:
         push_error("Failed to parse agent data in %s" % path)
         data = {}
