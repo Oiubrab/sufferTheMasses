@@ -1,0 +1,10 @@
+{
+  "id": "mino_001",
+  "name": "Mino",
+  "age": 34,
+  "physical_traits": {
+    "sex": "male",
+    "height_cm": 180,
+    "weight_kg": 75
+  }
+}
