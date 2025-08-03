@@ -1,4 +1,5 @@
-image: barichello/godot-ci:4.4        # has Godot headless + export templates
-test_command: |
+image: barichello/godot-ci:4.4      # Docker image to boot
+
+test: |                             # Shell script that must exit 0
   godot --headless --path . \
         -s addons/gut/gut_cmdln.gd -gexit
